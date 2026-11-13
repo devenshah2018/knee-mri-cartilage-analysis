@@ -78,8 +78,6 @@ Clinical reference workbooks belong in `datasets/clinical/`. The real-data
 it is also excluded from Git. Other spreadsheets shipped inside the original
 annotation package remain with that raw package and are not pipeline inputs.
 
-Read **[data formats](docs/data-formats.md)** for the exact schemas, coordinate
-orientation, right-knee ordering, visit times, and `<subject>_<knee>/v01/` layout.
 For TXT-only use, set `medial_excel=None`, `lateral_excel=None`, `kl_excel=None`.
 DICOM, both visits' TXT annotations, and the model remain required; the independent
 Excel bone comparisons and KL stratification are then skipped.
@@ -130,7 +128,7 @@ runner's raw-image z-score preprocessing; CDI uses its original CLAHE/blur/erosi
 preprocessing. Set `RUN_CDI_ANALYSIS=False` and `RUN_WHOLE_VOLUMES=True` for an
 image-only run, which requires no Patella TXT or medial/lateral workbooks. Set
 `kl_excel=None` if you have no KL references. Knee-qualified IDs or DICOM laterality
-supply side identity for optional KL matching; unknown side leaves KL missing. See [architecture and migration notes](docs/architecture.md).
+supply side identity for optional KL matching; unknown side leaves KL missing.
 
 ## Outputs
 
@@ -174,7 +172,6 @@ skm_tea_cdi/
   volume.py                 optional whole-cartilage segmentation
 scripts/execute_notebook.py  fresh-kernel notebook verification
 tests/                      synthetic behavior and notebook-hygiene tests
-docs/                       input formats, architecture, verification notes
 ```
 
 ```bash
@@ -192,5 +189,10 @@ python scripts/execute_notebook.py --no-excel --volumes-only
 Notebook execution commands require your local inputs and model. They use the
 invoking Python interpreter and save executed copies under `results/verification/`,
 leaving the source notebook clean. `--scan-id <id>` selects another knee;
-`--volumes` also exercises the optional volume export. See
-[verification evidence](docs/verification.md) for the tested scope.
+`--volumes` also exercises the optional volume export.
+
+## License
+
+Copyright (c) 2026 Deven Shah. This project's code is released under the
+[MIT License](LICENSE). External datasets and pretrained models retain their
+respective licenses and terms of use.
